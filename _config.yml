@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://ys97.github.io/blog
+url: http://whutys.github.io/blog
 root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -27,7 +27,8 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render: README.md
- 
+  # - 404/**
+
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
@@ -79,7 +80,7 @@ theme: next #landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/ys97/blog.git
+  repository: https://github.com/whutys/blog.git
   branch: master
 
 # Extensions
@@ -101,7 +102,7 @@ Plugins:
 - hexo-generator-baidu-sitemap
 - hexo-generator-sitemap
 
-baidusitemap:
-    path: baidusitemap.xml
-sitemap:
+sitemap: 
     path: sitemap.xml
+baidusitemap: 
+    # path: baidusitemap.xml

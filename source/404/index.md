@@ -1,8 +1,9 @@
 ---
-layout: false
 title: 404
 date: 2019-01-07 10:22:06
 comments: false
+permalink: /404
+layout: false
 ---
 <!DOCTYPE html>
 <html lang="en">

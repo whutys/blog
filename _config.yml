@@ -4,8 +4,8 @@
 
 # Site
 title: 愤怒的小鸡
-subtitle: 个人主页
-description: blog 博客
+subtitle: Blog
+description: ys'blog 博客
 keywords: blog 博客
 author: whutys
 language: zh-Hans
@@ -80,7 +80,7 @@ theme: next #landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/whutys/blog.git
+  repository:  git@github.com:whutys/blog.git
   branch: master
 
 # Extensions

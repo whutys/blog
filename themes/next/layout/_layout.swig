@@ -27,7 +27,7 @@
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"> {%- include '_partials/header.swig' %} </div>
     </header>
-
+    
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
@@ -42,7 +42,7 @@
         {% endif %}
       </div>
     </main>
-
+    
     <footer id="footer" class="footer">
       <div class="footer-inner">
         {% include '_partials/footer.swig' %}
@@ -50,7 +50,7 @@
         {% block footer %}{% endblock %}
       </div>
     </footer>
-
+    
     {% if not theme.sidebar.b2t %}
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
@@ -59,7 +59,7 @@
         {% endif %}
       </div>
     {% endif %}
-
+    
     {% if theme.needmoreshare2.enable and theme.needmoreshare2.float.enable %}
       <div id="needsharebutton-float">
         <span class="btn">
@@ -94,4 +94,10 @@
 </html>
 
 <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/blog/js/src/clicklove.js"></script>
+
+<!--script type="text/javascript" src="/blog/js/src/clicklove.js"></script-->
+
+```javascript
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+```

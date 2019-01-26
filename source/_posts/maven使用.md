@@ -3,7 +3,7 @@ title: maven使用
 type: categories
 copyright: true
 date: 2019-01-10 19:29:57
-categories:
+categories: [软件安装使用]
 tags: maven
 ---
 ## 安装

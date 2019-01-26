@@ -4,7 +4,7 @@ type: categories
 copyright: true
 date: 2019-01-10 19:06:57
 categories: 软件安装使用
-tags: hexo
+tags: [hexo,博客]
 ---
 ## 使用环境（Windows）
 1.node.js 官网点[这里](https://nodejs.org/)

@@ -11,7 +11,6 @@
   <title>{% block title %}{% endblock %}</title>
   {% include '_third-party/analytics/index.swig' %}
 </head>
-
 <body itemscope itemtype="http://schema.org/WebPage" lang="{{ page.lang || page.language || config.language }}">
 
   {% set container_class = "container " %}
@@ -97,7 +96,6 @@
 
 <!--script type="text/javascript" src="/blog/js/src/clicklove.js"></script-->
 
-```javascript
-<!--单击显示文字-->
-<script type="text/javascript" src="/js/click_show_text.js"></script>
-```
+<!-- 单击显示文字 -->
+
+<script type="text/javascript" src="/blog/js/src/click_show_text.js"></script>

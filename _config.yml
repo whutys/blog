@@ -80,8 +80,9 @@ theme: next #landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository:  git@github.com:whutys/blog.git
-  branch: master
+  repository: 
+    github: git@github.com:whutys/blog.git,master
+    coding: git@git.coding.net:whutys/blog.git,master
 
 # Extensions
 ## Plugins: http://hexo.io/plugins/

@@ -1,2 +1,1 @@
-hexo g && hexo deploy
-pause
+hexo g && hexo deploy && pause

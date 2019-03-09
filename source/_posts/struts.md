@@ -1,5 +1,5 @@
 ---
-title: struts
+title: struts2
 type: categories
 copyright: true
 date: 2019-01-10 19:48:05

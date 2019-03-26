@@ -81,8 +81,8 @@ theme: next #landscape
 deploy:
   type: git
   repository: 
-    github: git@github.com:whutys/blog.git,master
     coding: git@git.coding.net:whutys/blog.git,master
+    github: git@github.com:whutys/blog.git,master
 
 # Extensions
 ## Plugins: http://hexo.io/plugins/
@@ -106,4 +106,4 @@ Plugins:
 sitemap: 
     path: sitemap.xml
 baidusitemap: 
-    # path: baidusitemap.xml
+    path: baidusitemap.xml

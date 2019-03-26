@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[netty]]></title>
+    <url>%2Fblog%2F2019%2F03%2F26%2Fnetty%2F</url>
+    <content type="text"><![CDATA[服务端 12345678910111213141516171819202122232425262728293031323334package cn.whutys;import io.netty.bootstrap.ServerBootstrap;import io.netty.channel.ChannelHandlerContext;import io.netty.channel.ChannelInitializer;import io.netty.channel.SimpleChannelInboundHandler;import io.netty.channel.nio.NioEventLoopGroup;import io.netty.channel.socket.nio.NioServerSocketChannel;import io.netty.channel.socket.nio.NioSocketChannel;import io.netty.handler.codec.string.StringDecoder;public class NettyServer &#123; public static void main(String[] args) &#123; ServerBootstrap serverBootstrap = new ServerBootstrap(); NioEventLoopGroup boos = new NioEventLoopGroup(); NioEventLoopGroup worker = new NioEventLoopGroup(); serverBootstrap .group(boos, worker) .channel(NioServerSocketChannel.class) .childHandler(new ChannelInitializer&lt;NioSocketChannel&gt;() &#123; protected void initChannel(NioSocketChannel ch) &#123; ch.pipeline().addLast(new StringDecoder()); ch.pipeline().addLast(new SimpleChannelInboundHandler&lt;String&gt;() &#123; @Override protected void channelRead0(ChannelHandlerContext ctx, String msg) &#123; System.out.println(msg); &#125; &#125;); &#125; &#125;) .bind(2333); &#125;&#125; 客户端 123456789101112131415161718192021222324252627282930313233package cn.whutys;import io.netty.bootstrap.Bootstrap;import io.netty.channel.Channel;import io.netty.channel.ChannelInitializer;import io.netty.channel.nio.NioEventLoopGroup;import io.netty.channel.socket.nio.NioSocketChannel;import io.netty.handler.codec.string.StringEncoder;import java.util.Date;public class NettyClient &#123; public static void main(String[] args) throws InterruptedException &#123; Bootstrap bootstrap = new Bootstrap(); NioEventLoopGroup group = new NioEventLoopGroup(); bootstrap.group(group) .channel(NioSocketChannel.class) .handler(new ChannelInitializer&lt;Channel&gt;() &#123; @Override protected void initChannel(Channel ch) &#123; ch.pipeline().addLast(new StringEncoder()); &#125; &#125;); Channel channel = bootstrap.connect("127.0.0.1", 2333).channel(); while (true) &#123; channel.writeAndFlush(new Date() + ": hello world!"); Thread.sleep(5000); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>IO</category>
+      </categories>
+      <tags>
+        <tag>netty</tag>
+        <tag>NIO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[docker]]></title>
+    <url>%2Fblog%2F2019%2F02%2F20%2Fdocker%2F</url>
+    <content type="text"><![CDATA[Docker windows7 下载Toolbox for Windows Win10 以上可以安装 Docker for Windows 12345docker images // 查看所有镜像docker container ls // 查看正在运行的容器，辛辛苦苦敲了这几个单词却没有显示容器怎么办？docker container ls -a // 可以带上 -a 参数，列出所有的容器，此时可以看到刚才的 hello-world 容器了，因为它运行完就退出了docker rm -f container CONTAINER ID // 删除容器docker rmi IMAGE ID // 删除镜像 设置国内镜像源1--registry-mirror https://registry.docker-cn.com Toolbox 默认只能访问 C:\Users 这个文件夹下的内容，打开 VirtualBox添加其他路径 镜像清理 123docker ps -a | grep "Exited" | awk '&#123;print $1 &#125;'|xargs docker stopdocker ps -a | grep "Exited" | awk '&#123;print $1 &#125;'|xargs docker rmdocker images|grep none|awk '&#123;print $3 &#125;'|xargs docker rmi Dockerfile mysql 123456789101112131415161718192021222324# First docker file from ys# VERSION 0.0.1# Author: ys #基础镜像FROM mysql:5.7.24 #作者MAINTAINER yuanshuai &lt;242902797@qq.com&gt;#定义工作目录ENV WORK_PATH /etc/mysql#定义conf文件名ENV CONF_FILE_NAME my.cnf#删除原有配置文件RUN rm $WORK_PATH/$CONF_FILE_NAME#复制新的配置文件COPY ./$CONF_FILE_NAME $WORK_PATH/#给shell文件赋读权限RUN chmod a+r $WORK_PATH/$CONF_FILE_NAME nginx 123456789101112131415161718192021222324# First docker file from ys# VERSION 0.0.1# Author: ys #基础镜像FROM nginx #作者MAINTAINER yuanshuai &lt;242902797@qq.com&gt;#定义工作目录ENV WORK_PATH /etc/nginx#定义conf文件名ENV CONF_FILE_NAME nginx.conf#删除原有配置文件RUN rm $WORK_PATH/$CONF_FILE_NAME#复制新的配置文件COPY ./$CONF_FILE_NAME $WORK_PATH/#给shell文件赋读权限RUN chmod a+r $WORK_PATH/$CONF_FILE_NAME nginx的config 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556user nginx;worker_processes 1;error_log /var/log/nginx/error.log warn;pid /var/run/nginx.pid;events &#123; worker_connections 1024;&#125;http &#123; client_max_body_size 1500m;#文件限制 include /etc/nginx/mime.types; default_type application/octet-stream; log_format main &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos; &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos; &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;; access_log /var/log/nginx/access.log main; sendfile on; #tcp_nopush on; keepalive_timeout 65; #gzip on; #include /etc/nginx/conf.d/*.conf; upstream tomcat_client &#123; server tomcat01:8080 weight=1; #server tomcat02:8080 weight=1; &#125; server &#123; server_name &quot;&quot;; listen 80 default_server; listen [::]:80 default_server ipv6only=on; location / &#123; proxy_pass http://tomcat_client; proxy_redirect default; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; &#125; location /BaiduYunDownload/ &#123; root /e; rewrite ^/BaiduYunDownload/(.*)$\$1 break; autoindex on; #启用目录索引功能 autoindex_exact_size off; #关闭详细文件大小统计，让文件大小显示MB，GB单位，默认为b； autoindex_localtime on; #开启以服务器本地时区显示文件修改日期！ &#125; &#125;&#125; tomcat 123456789101112131415161718192021222324252627282930313233343536373839# First docker file from ys# VERSION 0.0.1# Author: ys #基础镜像FROM tomcat #作者MAINTAINER yuanshuai &lt;242902797@qq.com&gt; #定义工作目录ENV WORK_PATH /usr/local/tomcat/conf #定义manager.xml工作目录ENV MANAGER_PATH /usr/local/tomcat/conf/Catalina/localhost #定义要替换的文件名ENV USER_CONF_FILE_NAME tomcat-users.xml #定义要替换的server.xml文件名ENV SERVER_CONF_FILE_NAME server.xml #定义要新增的manager.xml文件名ENV MANAGER_CONF_FILE_NAME manager.xml #删除原文件tomcat-users.xmlRUN rm $WORK_PATH/$USER_CONF_FILE_NAME #复制文件tomcat-users.xmlCOPY ./$USER_CONF_FILE_NAME $WORK_PATH/ #删除原文件server.xmlRUN rm $WORK_PATH/$SERVER_CONF_FILE_NAME #复制文件server.xmlCOPY ./$SERVER_CONF_FILE_NAME $WORK_PATH/ #复制文件manager.xmlCOPY ./$MANAGER_CONF_FILE_NAME $MANAGER_PATH/]]></content>
+      <categories>
+        <category>虚拟化</category>
+        <category>镜像容器</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[排序算法]]></title>
+    <url>%2Fblog%2F2019%2F02%2F19%2F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[1.冒泡排序1234567891011121314151617181920/***从小到大*/public static void bubbleSort(int[] numbers) &#123; int temp = 0; int size = numbers.length; for(int i = 0; i &lt; size-1; i++) &#123; for(int j = 0; j &lt; size-1-i; j++) &#123; if(numbers[j] &gt; numbers[j+1]) //交换两数位置 &#123; temp = numbers[j]; numbers[j] = numbers[j+1]; numbers[j+1] = temp; &#125; &#125; &#125; &#125; 2.快速排序123456789101112131415161718192021222324252627282930313233343536373839404142public class FastSort&#123; public static void main(String []args)&#123; System.out.println("Hello World"); int[] a = &#123;12,20,5,16,15,1,30,45,23,9&#125;; int start = 0; int end = a.length-1; sort(a,start,end); for(int i = 0; i&lt;a.length; i++)&#123; System.out.println(a[i]); &#125; &#125; public void sort(int[] a,int low,int high)&#123; int start = low; int end = high; int key = a[low]; while(end&gt;start)&#123; //从后往前比较 while(end&gt;start&amp;&amp;a[end]&gt;=key) //如果没有比关键值小的，比较下一个，直到有比关键值小的交换位置，然后又从前往后比较 end--; if(a[end]&lt;=key)&#123; int temp = a[end]; a[end] = a[start]; a[start] = temp; &#125; //从前往后比较 while(end&gt;start&amp;&amp;a[start]&lt;=key)//如果没有比关键值大的，比较下一个，直到有比关键值大的交换位置 start++; if(a[start]&gt;=key)&#123; int temp = a[start]; a[start] = a[end]; a[end] = temp; &#125; //此时第一次循环比较结束，关键值的位置已经确定了。左边的值都比关键值小，右边的值都比关键值大，但是两边的顺序还有可能是不一样的，进行下面的递归调用 &#125; //递归 if(start&gt;low) sort(a,low,start-1);//左边序列。第一个索引位置到关键值索引-1 if(end&lt;high) sort(a,end+1,high);//右边序列。从关键值索引+1到最后一个 &#125;&#125; 3.选择排序1234567891011121314151617181920212223242526272829/** * 选择排序算法 * 在未排序序列中找到最小元素，存放到排序序列的起始位置 * 再从剩余未排序元素中继续寻找最小元素，然后放到排序序列末尾。 * 以此类推，直到所有元素均排序完毕。 * @param numbers */ public static void selectSort(int[] numbers) &#123; int size = numbers.length; //数组长度 int temp = 0 ; //中间变量 for(int i = 0 ; i &lt; size ; i++) &#123; int k = i; //待确定的位置 //选择出应该在第i个位置的数 for(int j = size -1 ; j &gt; i ; j--) &#123; if(numbers[j] &lt; numbers[k]) &#123; k = j; &#125; &#125; //交换两个数 temp = numbers[i]; numbers[i] = numbers[k]; numbers[k] = temp; &#125; &#125; 4.插入排序12345678910111213141516171819202122232425262728/** * 插入排序 * * 从第一个元素开始，该元素可以认为已经被排序 * 取出下一个元素，在已经排序的元素序列中从后向前扫描 * 如果该元素（已排序）大于新元素，将该元素移到下一位置 * 重复步骤3，直到找到已排序的元素小于或者等于新元素的位置 * 将新元素插入到该位置中 * 重复步骤2 * @param numbers 待排序数组 */ public static void insertSort(int[] numbers) &#123; int size = numbers.length; int temp = 0 ; int j = 0; for(int i = 0 ; i &lt; size ; i++) &#123; temp = numbers[i]; //假如temp比前面的值小，则将前面的值后移 for(j = i ; j &gt; 0 &amp;&amp; temp &lt; numbers[j-1] ; j --) &#123; numbers[j] = numbers[j-1]; &#125; numbers[j] = temp; &#125; &#125; 5.希尔算法1234567891011121314151617181920212223242526272829303132333435/**希尔排序的原理:根据需求，如果你想要结果从大到小排列，它会首先将数组进行分组，然后将较大值移到前面，较小值 * 移到后面，最后将整个数组进行插入排序，这样比起一开始就用插入排序减少了数据交换和移动的次数，可以说希尔排序是加强 * 版的插入排序 * 拿数组5, 2, 8, 9, 1, 3，4来说，数组长度为7，当increment为3时，数组分为两个序列 * 5，2，8和9，1，3，4，第一次排序，9和5比较，1和2比较，3和8比较，4和比其下标值小increment的数组值相比较 * 此例子是按照从大到小排列，所以大的会排在前面，第一次排序后数组为9, 2, 8, 5, 1, 3，4 * 第一次后increment的值变为3/2=1,此时对数组进行插入排序， *实现数组从大到小排 */ public static void shellSort(int[] data) &#123; int j = 0; int temp = 0; //每次将步长缩短为原来的一半 for (int increment = data.length / 2; increment &gt; 0; increment /= 2) &#123; for (int i = increment; i &lt; data.length; i++) &#123; temp = data[i]; for (j = i; j &gt;= increment; j -= increment) &#123; if(temp &gt; data[j - increment])//如想从小到大排只需修改这里 &#123; data[j] = data[j - increment]; &#125; else &#123; break; &#125; &#125; data[j] = temp; &#125; &#125; &#125; 6.归并排序12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758/** * 归并排序 * 简介:将两个（或两个以上）有序表合并成一个新的有序表 即把待排序序列分为若干个子序列，每个子序列是有序的。然后再把有序子序列合并为整体有序序列 * 时间复杂度为O(nlogn) * 稳定排序方式 * @param nums 待排序数组 * @return 输出有序数组 */ public static int[] sort(int[] nums, int low, int high) &#123; int mid = (low + high) / 2; if (low &lt; high) &#123; // 左边 sort(nums, low, mid); // 右边 sort(nums, mid + 1, high); // 左右归并 merge(nums, low, mid, high); &#125; return nums; &#125; /** * 将数组中low到high位置的数进行排序 * @param nums 待排序数组 * @param low 待排的开始位置 * @param mid 待排中间位置 * @param high 待排结束位置 */ public static void merge(int[] nums, int low, int mid, int high) &#123; int[] temp = new int[high - low + 1]; int i = low;// 左指针 int j = mid + 1;// 右指针 int k = 0; // 把较小的数先移到新数组中 while (i &lt;= mid &amp;&amp; j &lt;= high) &#123; if (nums[i] &lt; nums[j]) &#123; temp[k++] = nums[i++]; &#125; else &#123; temp[k++] = nums[j++]; &#125; &#125; // 把左边剩余的数移入数组 while (i &lt;= mid) &#123; temp[k++] = nums[i++]; &#125; // 把右边边剩余的数移入数组 while (j &lt;= high) &#123; temp[k++] = nums[j++]; &#125; // 把新数组中的数覆盖nums数组 for (int k2 = 0; k2 &lt; temp.length; k2++) &#123; nums[k2 + low] = temp[k2]; &#125; &#125; 7.堆排序1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950public class HeapSort &#123; public static void main(String[] args) &#123; int[] a=&#123;49,38,65,97,76,13,27,49,78,34,12,64&#125;; int arrayLength=a.length; //循环建堆 for(int i=0;i&lt;arrayLength-1;i++)&#123; //建堆 buildMaxHeap(a,arrayLength-1-i); //交换堆顶和最后一个元素 swap(a,0,arrayLength-1-i); System.out.println(Arrays.toString(a)); &#125; &#125; //对data数组从0到lastIndex建大顶堆 public static void buildMaxHeap(int[] data, int lastIndex)&#123; //从lastIndex处节点（最后一个节点）的父节点开始 for(int i=(lastIndex-1)/2;i&gt;=0;i--)&#123; //k保存正在判断的节点 int k=i; //如果当前k节点的子节点存在 while(k*2+1&lt;=lastIndex)&#123; //k节点的左子节点的索引 int biggerIndex=2*k+1; //如果biggerIndex小于lastIndex，即biggerIndex+1代表的k节点的右子节点存在 if(biggerIndex&lt;lastIndex)&#123; //若果右子节点的值较大 if(data[biggerIndex]&lt;data[biggerIndex+1])&#123; //biggerIndex总是记录较大子节点的索引 biggerIndex++; &#125; &#125; //如果k节点的值小于其较大的子节点的值 if(data[k]&lt;data[biggerIndex])&#123; //交换他们 swap(data,k,biggerIndex); //将biggerIndex赋予k，开始while循环的下一次循环，重新保证k节点的值大于其左右子节点的值 k=biggerIndex; &#125;else&#123; break; &#125; &#125; &#125; &#125; //交换 private static void swap(int[] data, int i, int j) &#123; int tmp=data[i]; data[i]=data[j]; data[j]=tmp; &#125; &#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>排序算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java技能图谱]]></title>
+    <url>%2Fblog%2F2019%2F02%2F18%2FJava%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1%2F</url>
+    <content type="text"><![CDATA[Java技能图谱]]></content>
+      <categories>
+        <category>Java</category>
+        <category>技能</category>
+      </categories>
+      <tags>
+        <tag>Java知识点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CATIA VBA]]></title>
+    <url>%2Fblog%2F2019%2F01%2F25%2FCATIA-VBA%2F</url>
+    <content type="text"><![CDATA[VBA intersection之注册表操作注册表句柄键：HKEY_CURRENT_USER\Software\VB and VBA Program Settings SaveSetting将一个值存储到注册表里 1SaveSetting &quot;工程主题&quot;,&quot;主键名&quot;,&quot;键名&quot;,&quot;键值&quot; appname 必要。字符串表达式，包含应用程序或工程的名称，对这些应用程序或工程使用设置section 必要。字符串表达式，包含区域名称，在该区域保存注册表项设置。key 必要。字符串表达式，包含将要保存的注册表项设置的名称。setting 必要。表达式，包含 key 的设置值。 GetSetting获取的注册表的键值 1GetSetting &quot;工程主题&quot;,&quot;主键名&quot;,&quot;键名&quot;,&quot;默认键值&quot; &apos;默认键值,当获取为空,或不成功时返回默认值 appname 必要。字符串表达式，包含应用程序或工程的名称，要求这些应用程序或工程有注册表项设置。section 必要。字符串表达式，包含区域名称，要求该区域有注册表项设置。key 必要。字符串表达式，返回注册表项设置的名称。default 可选。表达式，如果注册表项设置中没有设置值，则返回缺省值。如果省略，则 default 取值为长度为零的字符串 (“”)。 去CATVBA密码，同VBA使用文本编辑器（如notepad++）打开vba文件 搜索DBP字段，修改为DBx，如有多个都修改，最后保存（若提示占用，先移除CATIA宏） CATIA加载宏文件，提示出错一路回车，打开宏加密面板，修改密码为自己的密码，记住保存 DPx改回DPB 使用自己修改的密码打开宏编辑]]></content>
+      <categories>
+        <category>CATIA</category>
+        <category>VBA</category>
+      </categories>
+      <tags>
+        <tag>CATIA</tag>
+        <tag>VBA</tag>
+        <tag>二次开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[springCloud]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2FspringCloud%2F</url>
+    <content type="text"><![CDATA[SpringBoot与SpringCloud的版本对应详细版 Spring Boot Spring Cloud 1.2.x Angel版本 1.3.x Brixton版本 1.4.x stripes Camden版本 1.5.x Dalston版本、Edgware版本 2.0.x Finchley版本 2.1.x Greenwich版本]]></content>
+      <categories>
+        <category>java</category>
+        <category>javaweb</category>
+      </categories>
+      <tags>
+        <tag>springCloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[springboot]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2Fspringboot%2F</url>
+    <content type="text"><![CDATA[LoggerFactory is not a Logback LoggerContext but Logback is on the classpath…. spring-boot-starter-web下 123456&lt;exclusions&gt; &lt;exclusion&gt; &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt; &lt;artifactId&gt;logback-classic&lt;/artifactId&gt; &lt;/exclusion&gt;&lt;/exclusions&gt; IntelliJ IDEA启动spring boot项目出现Failed to start component [StandardEngine[Tomcat].StandardHost[localhost].TomcatEmbeddedContext[]] 进入Project Structure，修改左侧Project、Modules，把其中的Project SDK修改为自己定义的jdk1.8]]></content>
+      <categories>
+        <category>java</category>
+        <category>javaweb</category>
+      </categories>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[myBatis]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2FmyBatis%2F</url>
+    <content type="text"><![CDATA[动态sql if12345678&lt;select id="queryByIdAndTitle" resultType="Blog"&gt; SELECT * FROM BLOG WHERE 1=1 &lt;if test="id!= null and title!=null"&gt; AND id=#&#123;id&#125; and title=#&#123;title&#125; &lt;/if&gt;&lt;/select&gt; choose(when,otherwise)123456789101112&lt;select id="queryBy" resultType="Blog"&gt; SELECT * FROM BLOG WHERE 1=1 &lt;choose&gt; &lt;when test="title != null"&gt; AND title like #&#123;title&#125; &lt;/when&gt; &lt;otherwise&gt; AND id= 1 &lt;/otherwise&gt; &lt;/choose&gt;&lt;/select&gt; where12345678&lt;select id="queryBy" resultType="com.scme.pojo.User" parameterType="com.scme.pojo.User"&gt; select * from user &lt;where&gt; &lt;if test="username!=null and password!=null"&gt; and username=#&#123;username&#125; and password=#&#123;password&#125; &lt;/if&gt; &lt;/where&gt;&lt;/select&gt; trim where12345678&lt;select id="queryBy" resultType="com.scme.pojo.User" parameterType="com.scme.pojo.User"&gt; select * from user &lt;trim prefix="WHERE" prefixOverrides="AND |OR "&gt; &lt;if test="username!=null and password!=null"&gt; and username=#&#123;username&#125; and password=#&#123;password&#125; &lt;/if&gt; &lt;/trim&gt;&lt;/select&gt; set12345678910111213&lt;update id="updateUser" parameterType="com.scme.pojo.User"&gt; update user &lt;set&gt; &lt;if test="username!=null"&gt; username=#&#123;username&#125; &lt;/if&gt; &lt;/set&gt; &lt;where&gt; &lt;if test="id!=null"&gt; id=#&#123;id&#125; &lt;/if&gt; &lt;/where&gt;&lt;/update&gt; trim set123456789&lt;update id="updateUser" parameterType="com.scme.pojo.User"&gt; update user &lt;trim prefix="set" prefixOverrides=","&gt; &lt;if test="username!=null"&gt; username=#&#123;username&#125; &lt;/if&gt; &lt;/trim&gt; &lt;where&gt; &lt;if test="id!=null"&gt; id=#&#123;id&#125; &lt;/if&gt; &lt;/where&gt; &lt;/update&gt; foreach12345678&lt;delete id="batchDelete" parameterType="java.lang.String"&gt; delete from user where id in &lt;foreach item="id" index="index" collection="list" open="(" separator="," close=")"&gt; #&#123;id&#125; &lt;/foreach&gt;&lt;/delete &gt; bind创建变量12345&lt;select id="selectBlogsLike" resultType="Blog"&gt; &lt;bind name="pattern" value="'%' + _parameter.getTitle() + '%'" /&gt; SELECT * FROM BLOG WHERE title LIKE #&#123;pattern&#125;&lt;/select&gt; include12345&lt;sql id="sqlref"&gt;&lt;/sql&gt;&lt;select id="" parameterType="" resultMap=""&gt; &lt;include refid="sqlref"/&gt; ...&lt;/select&gt; 注解123456789101112131415161718192021public interface ObjectMapper&#123; //避免使用重载方法 //静态sql @insert("insert into tablename(field1,...) values(#&#123;param1&#125;,...)") void insertMethod(JavaObject javaObject); @delete("delete from tablename where field1=#&#123;param1&#125;,...") void deleteMethod(JavaObject javaObject); @update("update tablename set field1=#&#123;param1&#125;,...") void uodateMethod(JavaObject javaObject); @select("select field1,... from tablename where field1=#&#123;param1&#125;,...") void selectMethod(JavaObject javaObject); //动态sql方法 @insertProvider(type="SQL方法类路径",method="返回SQL语句的方法名") void insertMethod2(JavaObject javaObject); @deleteProvider(type="SQL方法类路径",method="返回SQL语句的方法名") void deleteMethod2(JavaObject javaObject); @updateProvider(type="SQL方法类路径",method="返回SQL语句的方法名") void uodateMethod2(JavaObject javaObject); @selectProvider(type="SQL方法类路径",method="返回SQL语句的方法名") void selectMethod2(JavaObject javaObject);&#125;]]></content>
+      <categories>
+        <category>java</category>
+        <category>javaweb</category>
+      </categories>
+      <tags>
+        <tag>web后端框架</tag>
+        <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[springMVC]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2FspringMVC%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>java</category>
+        <category>javaweb</category>
+      </categories>
+      <tags>
+        <tag>springMVC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hibernate]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2Fhibernate%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>java</category>
+        <category>javaweb</category>
+      </categories>
+      <tags>
+        <tag>hibernate</tag>
+        <tag>web后端框架</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[struts2]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2Fstruts%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>java</category>
+        <category>javaweb</category>
+      </categories>
+      <tags>
+        <tag>struts2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[spring]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2Fspring%2F</url>
+    <content type="text"><![CDATA[1.ioc控制反转将对象bean的创建交给spring容器。 使用技术：1.xml配置文件2.dom4j解析3.工厂设计模式4.反射 bean实例化三种方式： 1.无参构造（默认） 1&lt;bean id="bean1" class="bean1ClassPath"&gt;&lt;/bean&gt; 2.静态工厂 1&lt;bean id="bean2" class="bean2factoryClassPath" factory-method="getBean2"&gt;&lt;/bean&gt; 3.实例工厂 12&lt;bean id="bean3factory" class="bean3factoryClassPath"&gt;&lt;/bean&gt;&lt;bean id="bean3" factory-bean="bean3factory" factory-method="getBean3"&gt;&lt;/bean&gt; bean参数：id,class（类路径）,name（同id）.scope（singleton、prototype、request、session、globalsession） bean属性注入：set方法、有参构造、接口（spring不支持） 1234567&lt;bean id="" class=""&gt;&lt;constructor-arg name="" value=""&gt;&lt;/constructor-arg&gt;&lt;/bean&gt;&lt;bean id="" class=""&gt;&lt;property name="" value=""&gt;&lt;/property&gt;&lt;/bean&gt; IOC与DI：DI属性注入在IOC创建基础上进行 2.aop面向切面编程，拓展功能不修改源代码采用横向抽取替代传统纵向继承 底层使用 动态代理实现（有接口使用jdk，没接口使用cglib） 术语： 连接点（Joinpoint） 程序执行的某个特定位置：如类开始初始化前、类初始化后、类某个方法调用前、调用后、方法抛出异常后。一个类或一段程序代码拥有一些具有边界性质的特定点，这些点中的特定点就称为“连接点”。Spring仅支持方法的连接点，即仅能在方法调用前、方法调用后、方法抛出异常时以及方法调用前后这些程序执行点织入通知。连接点由两个信息确定：第一是用方法表示的程序执行点；第二是用相对点表示的方位。 切点（Pointcut） 每个程序类都拥有多个连接点，如一个拥有两个方法的类，这两个方法都是连接点，即连接点是程序类中客观存在的事物。AOP通过“切点”定位特定的连接点。连接点相当于数据库中的记录，而切点相当于查询条件。切点和连接点不是一对一的关系，一个切点可以匹配多个连接点。 通知（Advice） 通知是织入到目标类连接点上的一段程序代码，在Spring中，通知除用于描述一段程序代码外，还拥有另一个和连接点相关的信息，这便是执行点的方位。结合执行点方位信息和切点信息，我们就可以找到特定的连接点。 前置通知（Before）：在目标方法被调用之前调用通知功能； 后置通知（After）：在目标方法完成之后调用通知，此时不会关心方法的输出是什么； 返回通知（After-returning）：在目标方法成功执行之后调用通知； 异常通知（After-throwing）：在目标方法抛出异常后调用通知； 环绕通知（Around）：通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为。 目标对象（Target） 通知逻辑的织入目标类。如果没有AOP，目标业务类需要自己实现所有逻辑，而在AOP的帮助下，目标业务类只实现那些非横切逻辑的程序逻辑，而性能监视和事务管理等这些横切逻辑则可以使用AOP动态织入到特定的连接点上。 引介（Introduction） 引介是一种特殊的通知，它为类添加一些属性和方法。这样，即使一个业务类原本没有实现某个接口，通过AOP的引介功能，我们可以动态地为该业务类添加接口的实现逻辑，让业务类成为这个接口的实现类。 织入（Weaving） 织入是将通知添加对目标类具体连接点上的过程。AOP像一台织布机，将目标类、通知或引介通过AOP这台织布机天衣无缝地编织到一起。根据不同的实现技术，AOP有三种织入的方式： a、编译期织入，这要求使用特殊的Java编译器。 b、类装载期织入，这要求使用特殊的类装载器。 c、动态代理织入，在运行期为目标类添加通知生成子类的方式。把切面应用到目标对象来创建新的代理对象的过程，Spring采用动态代理织入，而AspectJ采用编译期织入和类装载期织入。 代理（Proxy） 一个类被AOP织入通知后，就产出了一个结果类，它是融合了原类和通知逻辑的代理类。根据不同的代理方式，代理类既可能是和原类具有相同接口的类，也可能就是原类的子类，所以我们可以采用调用原类相同的方式调用代理类。 切面（Aspect） 切面由切点和通知组成，它既包括了横切逻辑的定义，也包括了连接点的定义，Spring AOP就是负责实施切面的框架，它将切面所定义的横切逻辑织入到切面所指定的连接点中。 aspectj spring配合aspectj完成aop操作。]]></content>
+      <categories>
+        <category>java</category>
+        <category>javaweb</category>
+      </categories>
+      <tags>
+        <tag>spring容器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[jsp]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2Fjsp%2F</url>
+    <content type="text"><![CDATA[9大内置对象out、request、response、session、pageContext、application、config、page、exception out：Javax.servlet.jsp.JspWriter作用域：page。 request：Javax.servlet.http.HttpServletRequest作用域：request。请求结束，生命周期 结束。 123456getParameter(key); //获取提交表单的数据getParameterValues(key); //获取提交表单的一组数据request.getRequestDispatcher("list.jsp").forward(request,response); //转发(通过代码的方式进行转发)request.setAttribute(key,object); //设置请求对象的属性request.gettAttribute(key); //获取请求对象的属性request.setCharacterEncoding("UTF-8"); //对请求数据重新编码 resonpse：Javax.servlet.http. HttpServletResponse作用域：page 12response.sendRedirect("页面");//页面跳转。注意，之前的forward是转发，这里是跳转，注意区分。response.setCharacterEncoding("gbk");//设置响应编码 session：Javax.servlet.http.HttpSession作用域：session。表示一个会话，用来保存用户信息，以便跟踪每个用户的状态。是指在一段时间内客户端和服务器之间的一连串的相关的交互过程。 1234567session.getid();//取得session的id号.id由tomcat自动分配。session.isnew();//判断session时候是新建的session.setAttribute(key,object);//往当前会话中设置一个属性session.getAttribute(key);//获取当前会话中的一个属性session.removeAttribute(key);//删除当前会话中的属性session.setMaxInactiveInterval(1000*60*30);//设置当前会话失效时间(ms) 。Tomcat默认的会话时间为30分钟。session.invalidate();//初始化当前会话对象(一般在推出的时候使用，可以删除当前会话的数据) pageContext：javax.servlet.jsp.PageContext作用域：page。JSP的页面上下文。 application：javax.servlet.ServletContext作用域：application。从servlet配置对象获得的servlet上下文，生命周期最长。服务器启动的时候就会创建application对象。从服务器存在到服务器终止，都一直存在，且只保留一个对象，所有用户共享一个application。 config：javax.servlet.ServletConfig作用域：page。本JSP的 ServletConfig配置对象 page：java.1ang.Object作用域：page。实现处理本页当前请求的类的实例（javax.servlet.jsp.HttpJspPage），转换后的Servlet类本身。 exception：java.lang.Exception作用域：page。本JSP页面的异常对象]]></content>
+      <categories>
+        <category>java</category>
+        <category>javaweb</category>
+      </categories>
+      <tags>
+        <tag>jsp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[servlet]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2Fservlet%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>java</category>
+        <category>javaweb</category>
+      </categories>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[maven使用]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2Fmaven%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[安装maven官网 maven.apache.org国内使用阿里仓库 修改settings.xml，加入1234567&lt;mirror&gt; &lt;id&gt;alimaven&lt;/id&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;name&gt;aliyun maven&lt;/name&gt; &lt;!--&lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;--&gt; &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;&lt;/mirror&gt; 依赖查询 https://mvnrepository.com/]]></content>
+      <categories>
+        <category>软件安装使用</category>
+      </categories>
+      <tags>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo安装与使用]]></title>
+    <url>%2Fblog%2F2019%2F01%2F10%2Fhexo%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[使用环境（Windows）1.node.js 官网点这里 2.Git 官网点这里 安装Hexo命令行 cmd 或 gitbash 国内使用cnpm，使用方式 1npm install -g cnpm --registry=https://registry.npm.taobao.org 1.安装hexo-cli 1cnpm install -g hexo-cli 2.创建博客文件夹，如D:\blog 3.初始化博客 在文件夹内打开命令行输入hexo init 或 hexo init [博客文件夹] 4.安装依赖 1cnpm install 5.启动服务 hexo s，默认端口4000 6.渲染静态资源 hexo g 使用1.安装Git依赖hexo-deployer-git 1cnpm install hexo-deployer-git --save 2.配置 _config.yml 1234deploy: type: git repository: https://github.com/yourname/yourname.github.io.git branch: master 3.发布到GitHub hexo d 4.查看 https://ys97.github.io NexT主题6.0 1git clone https://github.com/theme-next/hexo-theme-next.git themes/next RSS 安装hexo-generator-feed插件 1npm install --save hexo-generator-feed 在站点配置文件添加 Extensions Plugins: http://hexo.io/plugins/ plugins: hexo-generate-feed 主题配置文件 1rss: /atom.xml RSS迁移 安装hexo-migrator-rss插件 1npm install --save hexo-migrator-rss 从 RSS 迁移所有文章 1hexo migrate rss]]></content>
+      <categories>
+        <category>软件安装使用</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[test]]></title>
+    <url>%2Fblog%2F2019%2F01%2F09%2Ftest%2F</url>
+    <content type="text"><![CDATA[假如生活欺骗了你——普希金假如生活欺骗了你不要悲伤，不要心急忧郁的日子里须要镇静相信吧，快乐的日子将会来临心儿永远向往着未来现在却常是忧郁一切都是瞬息，一切都将会过去而那过去了的，就会成为亲切的怀恋]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2Fblog%2F2019%2F01%2F06%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>

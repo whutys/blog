@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>愤怒的小鸡</title>
+  
+  <subtitle>Blog</subtitle>
+  <link href="/blog/atom.xml" rel="self"/>
+  
+  <link href="http://whutys.github.io/blog/"/>
+  <updated>2019-03-26T05:59:18.211Z</updated>
+  <id>http://whutys.github.io/blog/</id>
+  
+  <author>
+    <name>whutys</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>netty</title>
+    <link href="http://whutys.github.io/blog/2019/03/26/netty/"/>
+    <id>http://whutys.github.io/blog/2019/03/26/netty/</id>
+    <published>2019-03-26T05:55:23.000Z</published>
+    <updated>2019-03-26T05:59:18.211Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;服务端 &lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;
+      
+    
+    </summary>
+    
+      <category term="IO" scheme="http://whutys.github.io/blog/categories/IO/"/>
+    
+    
+      <category term="netty" scheme="http://whutys.github.io/blog/tags/netty/"/>
+    
+      <category term="NIO" scheme="http://whutys.github.io/blog/tags/NIO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker</title>
+    <link href="http://whutys.github.io/blog/2019/02/20/docker/"/>
+    <id>http://whutys.github.io/blog/2019/02/20/docker/</id>
+    <published>2019-02-20T05:21:56.000Z</published>
+    <updated>2019-02-20T06:00:27.389Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Docker windows7 下载&lt;strong&gt;Toolbox for Windows&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Win10 以上可以安装 &lt;a href=&quot;https://hub.docker.com/editions/community/docker-ce-d
+      
+    
+    </summary>
+    
+      <category term="虚拟化" scheme="http://whutys.github.io/blog/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+      <category term="镜像容器" scheme="http://whutys.github.io/blog/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/%E9%95%9C%E5%83%8F%E5%AE%B9%E5%99%A8/"/>
+    
+    
+      <category term="docker" scheme="http://whutys.github.io/blog/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>排序算法</title>
+    <link href="http://whutys.github.io/blog/2019/02/19/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+    <id>http://whutys.github.io/blog/2019/02/19/排序算法/</id>
+    <published>2019-02-19T05:58:51.000Z</published>
+    <updated>2019-02-19T06:14:59.584Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;1-冒泡排序&quot;&gt;&lt;a href=&quot;#1-冒泡排序&quot; class=&quot;headerlink&quot; title=&quot;1.冒泡排序&quot;&gt;&lt;/a&gt;1.冒泡排序&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutt
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://whutys.github.io/blog/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="排序算法" scheme="http://whutys.github.io/blog/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java技能图谱</title>
+    <link href="http://whutys.github.io/blog/2019/02/18/Java%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1/"/>
+    <id>http://whutys.github.io/blog/2019/02/18/Java技能图谱/</id>
+    <published>2019-02-18T03:20:52.000Z</published>
+    <updated>2019-02-18T03:30:12.662Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Java技能图谱&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/images/java技能图谱.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://whutys.github.io/blog/categories/Java/"/>
+    
+      <category term="技能" scheme="http://whutys.github.io/blog/categories/Java/%E6%8A%80%E8%83%BD/"/>
+    
+    
+      <category term="Java知识点" scheme="http://whutys.github.io/blog/tags/Java%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CATIA VBA</title>
+    <link href="http://whutys.github.io/blog/2019/01/25/CATIA-VBA/"/>
+    <id>http://whutys.github.io/blog/2019/01/25/CATIA-VBA/</id>
+    <published>2019-01-25T13:57:57.000Z</published>
+    <updated>2019-01-26T05:38:46.790Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;VBA-intersection之注册表操作&quot;&gt;&lt;a href=&quot;#VBA-intersection之注册表操作&quot; class=&quot;headerlink&quot; title=&quot;VBA intersection之注册表操作&quot;&gt;&lt;/a&gt;VBA intersection之注册表
+      
+    
+    </summary>
+    
+      <category term="CATIA" scheme="http://whutys.github.io/blog/categories/CATIA/"/>
+    
+      <category term="VBA" scheme="http://whutys.github.io/blog/categories/CATIA/VBA/"/>
+    
+    
+      <category term="CATIA" scheme="http://whutys.github.io/blog/tags/CATIA/"/>
+    
+      <category term="VBA" scheme="http://whutys.github.io/blog/tags/VBA/"/>
+    
+      <category term="二次开发" scheme="http://whutys.github.io/blog/tags/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>springCloud</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/springCloud/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/springCloud/</id>
+    <published>2019-01-10T11:49:21.000Z</published>
+    <updated>2019-02-17T14:32:56.692Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;SpringBoot与SpringCloud的版本对应详细版&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Spring Boot&lt;/th&gt;
+&lt;th&gt;Spring Cloud&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1.2.x&lt;
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://whutys.github.io/blog/categories/java/"/>
+    
+      <category term="javaweb" scheme="http://whutys.github.io/blog/categories/java/javaweb/"/>
+    
+    
+      <category term="springCloud" scheme="http://whutys.github.io/blog/tags/springCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>springboot</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/springboot/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/springboot/</id>
+    <published>2019-01-10T11:49:07.000Z</published>
+    <updated>2019-02-17T13:35:08.109Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;LoggerFactory is not a Logback LoggerContext but Logback is on the classpath….&lt;/p&gt;
+&lt;p&gt;spring-boot-starter-web下&lt;/p&gt;
+&lt;figure class=&quot;highlig
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://whutys.github.io/blog/categories/java/"/>
+    
+      <category term="javaweb" scheme="http://whutys.github.io/blog/categories/java/javaweb/"/>
+    
+    
+      <category term="springboot" scheme="http://whutys.github.io/blog/tags/springboot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>myBatis</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/myBatis/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/myBatis/</id>
+    <published>2019-01-10T11:48:50.000Z</published>
+    <updated>2019-03-26T06:46:22.971Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;动态sql&lt;/p&gt;
+&lt;h3 id=&quot;if&quot;&gt;&lt;a href=&quot;#if&quot; class=&quot;headerlink&quot; title=&quot;if&quot;&gt;&lt;/a&gt;if&lt;/h3&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://whutys.github.io/blog/categories/java/"/>
+    
+      <category term="javaweb" scheme="http://whutys.github.io/blog/categories/java/javaweb/"/>
+    
+    
+      <category term="web后端框架" scheme="http://whutys.github.io/blog/tags/web%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="mybatis" scheme="http://whutys.github.io/blog/tags/mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>springMVC</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/springMVC/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/springMVC/</id>
+    <published>2019-01-10T11:48:36.000Z</published>
+    <updated>2019-03-26T07:10:29.237Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="java" scheme="http://whutys.github.io/blog/categories/java/"/>
+    
+      <category term="javaweb" scheme="http://whutys.github.io/blog/categories/java/javaweb/"/>
+    
+    
+      <category term="springMVC" scheme="http://whutys.github.io/blog/tags/springMVC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hibernate</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/hibernate/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/hibernate/</id>
+    <published>2019-01-10T11:48:20.000Z</published>
+    <updated>2019-01-26T05:45:49.516Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="java" scheme="http://whutys.github.io/blog/categories/java/"/>
+    
+      <category term="javaweb" scheme="http://whutys.github.io/blog/categories/java/javaweb/"/>
+    
+    
+      <category term="hibernate" scheme="http://whutys.github.io/blog/tags/hibernate/"/>
+    
+      <category term="web后端框架" scheme="http://whutys.github.io/blog/tags/web%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>struts2</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/struts/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/struts/</id>
+    <published>2019-01-10T11:48:05.000Z</published>
+    <updated>2019-02-20T05:20:19.242Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="java" scheme="http://whutys.github.io/blog/categories/java/"/>
+    
+      <category term="javaweb" scheme="http://whutys.github.io/blog/categories/java/javaweb/"/>
+    
+    
+      <category term="struts2" scheme="http://whutys.github.io/blog/tags/struts2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/spring/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/spring/</id>
+    <published>2019-01-10T11:47:56.000Z</published>
+    <updated>2019-02-20T04:54:26.290Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;1-ioc控制反转&quot;&gt;&lt;a href=&quot;#1-ioc控制反转&quot; class=&quot;headerlink&quot; title=&quot;1.ioc控制反转&quot;&gt;&lt;/a&gt;1.ioc控制反转&lt;/h3&gt;&lt;p&gt;将对象bean的创建交给spring容器。&lt;/p&gt;
+&lt;p&gt;使用技术：1.xml配置文
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://whutys.github.io/blog/categories/java/"/>
+    
+      <category term="javaweb" scheme="http://whutys.github.io/blog/categories/java/javaweb/"/>
+    
+    
+      <category term="spring容器" scheme="http://whutys.github.io/blog/tags/spring%E5%AE%B9%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jsp</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/jsp/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/jsp/</id>
+    <published>2019-01-10T11:47:45.000Z</published>
+    <updated>2019-03-26T07:09:38.083Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;9大内置对象&quot;&gt;&lt;a href=&quot;#9大内置对象&quot; class=&quot;headerlink&quot; title=&quot;9大内置对象&quot;&gt;&lt;/a&gt;9大内置对象&lt;/h3&gt;&lt;p&gt;out、request、response、session、pageContext、application、c
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://whutys.github.io/blog/categories/java/"/>
+    
+      <category term="javaweb" scheme="http://whutys.github.io/blog/categories/java/javaweb/"/>
+    
+    
+      <category term="jsp" scheme="http://whutys.github.io/blog/tags/jsp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>servlet</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/servlet/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/servlet/</id>
+    <published>2019-01-10T11:47:28.000Z</published>
+    <updated>2019-01-26T05:45:22.304Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="java" scheme="http://whutys.github.io/blog/categories/java/"/>
+    
+      <category term="javaweb" scheme="http://whutys.github.io/blog/categories/java/javaweb/"/>
+    
+    
+      <category term="servlet" scheme="http://whutys.github.io/blog/tags/servlet/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>maven使用</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/maven%E4%BD%BF%E7%94%A8/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/maven使用/</id>
+    <published>2019-01-10T11:29:57.000Z</published>
+    <updated>2019-01-26T05:43:26.876Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;maven官网 maven.apache.org&lt;br&gt;国内使用阿里仓库&lt;/p&gt;
+&lt;p&gt;修改settings.xml，加入&lt;br&gt;&lt;figu
+      
+    
+    </summary>
+    
+      <category term="软件安装使用" scheme="http://whutys.github.io/blog/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
+    
+    
+      <category term="maven" scheme="http://whutys.github.io/blog/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo安装与使用</title>
+    <link href="http://whutys.github.io/blog/2019/01/10/hexo%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>http://whutys.github.io/blog/2019/01/10/hexo安装与使用/</id>
+    <published>2019-01-10T11:06:57.000Z</published>
+    <updated>2019-01-26T05:47:11.376Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;使用环境（Windows）&quot;&gt;&lt;a href=&quot;#使用环境（Windows）&quot; class=&quot;headerlink&quot; title=&quot;使用环境（Windows）&quot;&gt;&lt;/a&gt;使用环境（Windows）&lt;/h2&gt;&lt;p&gt;1.node.js 官网点&lt;a href=&quot;http
+      
+    
+    </summary>
+    
+      <category term="软件安装使用" scheme="http://whutys.github.io/blog/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
+    
+    
+      <category term="hexo" scheme="http://whutys.github.io/blog/tags/hexo/"/>
+    
+      <category term="博客" scheme="http://whutys.github.io/blog/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="http://whutys.github.io/blog/2019/01/09/test/"/>
+    <id>http://whutys.github.io/blog/2019/01/09/test/</id>
+    <published>2019-01-09T03:30:22.000Z</published>
+    <updated>2019-01-25T09:56:26.403Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;假如生活欺骗了你&quot;&gt;&lt;a href=&quot;#假如生活欺骗了你&quot; class=&quot;headerlink&quot; title=&quot;假如生活欺骗了你&quot;&gt;&lt;/a&gt;假如生活欺骗了你&lt;/h2&gt;&lt;h3 id=&quot;——普希金&quot;&gt;&lt;a href=&quot;#——普希金&quot; class=&quot;headerlink
+      
+    
+    </summary>
+    
+      <category term="test" scheme="http://whutys.github.io/blog/categories/test/"/>
+    
+    
+      <category term="hexo" scheme="http://whutys.github.io/blog/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://whutys.github.io/blog/2019/01/06/hello-world/"/>
+    <id>http://whutys.github.io/blog/2019/01/06/hello-world/</id>
+    <published>2019-01-06T10:52:00.000Z</published>
+    <updated>2019-01-25T09:56:26.390Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

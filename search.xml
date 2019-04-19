@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[分页插件pagehelper使用]]></title>
+    <url>%2Fblog%2F2019%2F04%2F19%2F%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6pagehelper%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[github地址 https://github.com/pagehelper/Mybatis-PageHelper 12345&lt;dependency&gt; &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt; &lt;artifactId&gt;pagehelper&lt;/artifactId&gt; &lt;version&gt;LATEST&lt;/version&gt;&lt;/dependency&gt; application.yml 12345pagehelper: helperDialect: mysql//默认自动选择 reasonable: "true" //不加引号会出现异常，暂时加引号处理org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration': Invocation of init method failed; nested exception is java.lang.ClassCastException: java.lang.Boolean cannot be cast to java.lang.String support-methods-arguments: "true"//同上 params: count=countSql 详细配置见https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md 分页信息PageInfo部分源码 1234567891011121314151617181920212223242526272829303132333435363738394041public class PageInfo&lt;T&gt; extends PageSerializable&lt;T&gt; &#123; //当前页 private int pageNum; //每页的数量 private int pageSize; //当前页的数量 private int size; //由于startRow和endRow不常用，这里说个具体的用法 //可以在页面中"显示startRow到endRow 共size条数据" //当前页面第一个元素在数据库中的行号 private int startRow; //当前页面最后一个元素在数据库中的行号 private int endRow; //总页数 private int pages; //前一页 private int prePage; //下一页 private int nextPage; //是否为第一页 private boolean isFirstPage = false; //是否为最后一页 private boolean isLastPage = false; //是否有前一页 private boolean hasPreviousPage = false; //是否有下一页 private boolean hasNextPage = false; //导航页码数 private int navigatePages; //所有导航页号 private int[] navigatepageNums; //导航条上的第一页 private int navigateFirstPage; //导航条上的最后一页 private int navigateLastPage; ...&#125; 使用方式 1234PageHelper.startPage(pageNum, pageSize);List&lt;实体类&gt; list = selectService.selectAll();//用PageInfo对结果进行包装PageInfo pageInfo = new PageInfo(list); 页面获取方式 12pageInfo.total //所有记录数pageInfo.list //当前页信息 重要提示 https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/Important.mdPageHelper.startPage方法重要提示只有紧跟在PageHelper.startPage方法后的第一个Mybatis的查询（Select）方法会被分页。 请不要配置多个分页插件请不要在系统中配置多个分页插件(使用Spring时,mybatis-config.xml和Spring&lt;bean&gt;配置方式，请选择其中一种，不要同时配置多个分页插件)！ 分页插件不支持带有for update语句的分页对于带有for update的sql，会抛出运行时异常，对于这样的sql建议手动分页，毕竟这样的sql需要重视。 分页插件不支持嵌套结果映射由于嵌套结果方式会导致结果集被折叠，因此分页查询的结果在折叠后总数会减少，所以无法保证分页结果数量正确。]]></content>
+      <categories>
+        <category>javaweb</category>
+      </categories>
+      <tags>
+        <tag>分页</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[thread]]></title>
     <url>%2Fblog%2F2019%2F04%2F03%2Fthread%2F</url>
     <content type="text"></content>

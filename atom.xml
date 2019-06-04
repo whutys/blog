@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://whutys.github.io/blog/"/>
-  <updated>2019-04-19T12:39:35.934Z</updated>
+  <updated>2019-06-04T09:49:47.473Z</updated>
   <id>http://whutys.github.io/blog/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>springboot jsp替换为thymeleaf</title>
+    <link href="http://whutys.github.io/blog/2019/05/19/springboot-jsp%E6%9B%BF%E6%8D%A2%E4%B8%BAthymeleaf/"/>
+    <id>http://whutys.github.io/blog/2019/05/19/springboot-jsp替换为thymeleaf/</id>
+    <published>2019-05-19T09:21:49.000Z</published>
+    <updated>2019-06-04T09:49:47.473Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;官方文档  &lt;a href=&quot;https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html#integrating-thymeleaf-with-spring&quot; target=&quot;_blank&quot; rel=&quot;n
+      
+    
+    </summary>
+    
+      <category term="javaweb" scheme="http://whutys.github.io/blog/categories/javaweb/"/>
+    
+    
+      <category term="thymeleaf" scheme="http://whutys.github.io/blog/tags/thymeleaf/"/>
+    
+  </entry>
   
   <entry>
     <title>分页插件pagehelper使用</title>
@@ -477,29 +500,6 @@
       <category term="hexo" scheme="http://whutys.github.io/blog/tags/hexo/"/>
     
       <category term="博客" scheme="http://whutys.github.io/blog/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>test</title>
-    <link href="http://whutys.github.io/blog/2019/01/09/test/"/>
-    <id>http://whutys.github.io/blog/2019/01/09/test/</id>
-    <published>2019-01-09T03:30:22.000Z</published>
-    <updated>2019-01-25T09:56:26.403Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;假如生活欺骗了你&quot;&gt;&lt;a href=&quot;#假如生活欺骗了你&quot; class=&quot;headerlink&quot; title=&quot;假如生活欺骗了你&quot;&gt;&lt;/a&gt;假如生活欺骗了你&lt;/h2&gt;&lt;h3 id=&quot;——普希金&quot;&gt;&lt;a href=&quot;#——普希金&quot; class=&quot;headerlink
-      
-    
-    </summary>
-    
-      <category term="test" scheme="http://whutys.github.io/blog/categories/test/"/>
-    
-    
-      <category term="hexo" scheme="http://whutys.github.io/blog/tags/hexo/"/>
     
   </entry>
   
